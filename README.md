@@ -24,4 +24,5 @@ Built with React.js, Vite and TailWind.
 ## Installation
 
 Clone/download the project, using `npm install` to install dependencies.  
-In the root folder of the project, using `npm run dev` to run the project.
+In the root folder of the project, using `npm run dev` to run the project.  
+Remember to change {YOUR API KEY} to your api key (google map api and openweathermap api).
