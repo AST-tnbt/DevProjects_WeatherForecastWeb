@@ -7,7 +7,7 @@ export default function ForecastBox() {
     const [weatherData, setWeatherData] = useState(null);
     async function fetchData() {
         try {
-            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=4748ad73168954570cc61e80ddedc558`);
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid={YOUR_API_KEY}`);
             if (!response.ok) {
                 throw new Error("Network respone was not ok!");
             }
@@ -21,7 +21,7 @@ export default function ForecastBox() {
 
     async function getCityName(lat: number, long: number) {
         try {
-            const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=AIzaSyCCH2Gy2Ct5YtuCvYQRIBYYeofYnd2MSIQ`);
+            const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key={YOUR_API_KEY}`);
             const data = await response.json();
             let cityName = data.results[0].address_components[data.results[0].address_components.length - 2].long_name;
             setLocation(cityName);
