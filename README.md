@@ -9,7 +9,9 @@ Hi there! I'm Tin!
 
 This project is the result of using my recently-learned React skills.
 
-I tried to generate a good app from a clean code perspective. However, I know that there are a lot of thinks that can be improved like the usage of context hook, create custom component to reuse templates for UI, etc.
+I tried to generate a good app from a clean code perspective. However, I know that there are a lot of thinks that can be improved like the usage of context hook, create custom component to reuse templates for UI, etc.  
+
+[HERE](https://devprojectweatherforecast.netlify.app/) is link to the website.  
 
 Any feedback is welcome!
 
