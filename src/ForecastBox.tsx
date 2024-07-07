@@ -2,17 +2,53 @@ import { FormEvent, useEffect, useState } from "react";
 import Image from "./Image";
 import Time from "./Time";
 
+interface WeatherData {
+    coord: { lon: number; lat: number };
+    weather: { id: number; main: string; description: string; icon: string }[];
+    base: string;
+    main: {
+      temp: number;
+      feels_like: number;
+      temp_min: number;
+      temp_max: number;
+      pressure: number;
+      humidity: number;
+      sea_level: number;
+      grnd_level: number;
+    };
+    visibility: number;
+    wind: { speed: number; deg: number };
+    rain?: { '1h': number };
+    clouds: { all: number };
+    dt: number;
+    sys: {
+      type: number;
+      id: number;
+      country: string;
+      sunrise: number;
+      sunset: number;
+    };
+    timezone: number;
+    id: number;
+    name: string;
+    cod: number;
+  }
+  
+
 export default function ForecastBox() {
     const [location, setLocation] = useState("");
-    const [weatherData, setWeatherData] = useState(null);
+    const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+    const ApiKeyWeather = import.meta.env.VITE_API_WEATHER_KEY;
+    const ApiKeyMap = import.meta.env.VITE_API_MAP_KEY;
+
     async function fetchData() {
         try {
-            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid={YOUR_API_KEY}`);
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${ApiKeyWeather}`);
             if (!response.ok) {
                 throw new Error("Network respone was not ok!");
             }
             const data = await response.json();
-            setWeatherData(data);
+            setWeatherData(data as WeatherData);
         }
         catch (error) {
             console.error("Can not fetching data: ");
@@ -21,9 +57,9 @@ export default function ForecastBox() {
 
     async function getCityName(lat: number, long: number) {
         try {
-            const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key={YOUR_API_KEY}`);
+            const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${ApiKeyMap}`);
             const data = await response.json();
-            let cityName = data.results[0].address_components[data.results[0].address_components.length - 2].long_name;
+            const cityName = data.results[0].address_components[data.results[0].address_components.length - 2].long_name;
             setLocation(cityName);
         }
         catch (error) {

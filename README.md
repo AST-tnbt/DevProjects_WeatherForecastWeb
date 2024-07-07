@@ -23,6 +23,10 @@ Built with React.js, Vite and TailWind.
 
 ## Installation
 
-Clone/download the project, using `npm install` to install dependencies.  
+Clone/download the project, using `npm install` to install dependencies. Setup enviroment variables:    
+- Create `.env` file and add VITE_API_WEATHER_KEY, VITE_API_MAP_KEY. 
+- For example:  
+`VITE_API_WEATHER_KEY="yourOpenWeatherMapAPIKey"  
+VITE_API_MAP_KEY="yourGoogleMapAPIKey"`
+
 In the root folder of the project, using `npm run dev` to run the project.  
-Remember to change {YOUR API KEY} to your api key (google map api and openweathermap api).
